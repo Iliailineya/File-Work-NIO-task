@@ -22,7 +22,7 @@ public class Main {
 
             switch (choice) {
                 case 1 -> createAndWrite(scanner);
-                case 2 -> readFromFile(scanner);
+                case 2 -> read(scanner);
                 case 3 -> append(scanner);
                 case 4 -> exit();
                 default -> System.out.println("Invalid choice. Please select again.");
@@ -30,7 +30,16 @@ public class Main {
         }
     }
 
-    public static void readFromFile(Scanner scanner) {
+    public static void createAndWrite(Scanner scanner) {
+        try {
+            FileWriteService.writeToFile(getFilename(scanner), getContent(scanner));
+            System.out.println("File created and written successfully.");
+        } catch (IOException e) {
+            System.err.println("An error occurred while creating/writing the file: " + e.getMessage());
+        }
+    }
+
+    public static void read(Scanner scanner) {
         try {
             String fileContent = FileReadService.readFromFile(getFilename(scanner));
             System.out.println("File content:\n" + fileContent);
@@ -42,18 +51,9 @@ public class Main {
     public static void append(Scanner scanner) {
         try {
             FileWriteService.appendToFile(getFilename(scanner), getContent(scanner));
-            System.out.println("Successfully append new content.");
+            System.out.println("Content added to the file.");
         } catch (IOException e) {
             System.err.println("An error occurred while appending to the file: " + e.getMessage());
-        }
-    }
-
-    public static void createAndWrite(Scanner scanner) {
-        try {
-            FileWriteService.writeToFile(getFilename(scanner), getContent(scanner));
-            System.out.println("File created and written successfully.");
-        } catch (IOException e) {
-            System.err.println("An error occurred while creating/writing the file: " + e.getMessage());
         }
     }
 
