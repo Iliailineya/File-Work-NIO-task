@@ -3,6 +3,7 @@ package org.example;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static org.example.Constants.FILES_DIRECTORY;
 import static org.example.Constants.MENU;
 
 public class Main {
@@ -59,7 +60,7 @@ public class Main {
 
     public static String getFilename(Scanner scanner) {
         System.out.print("Enter file name (without extension): ");
-        return Constants.FILES_DIRECTORY + scanner.nextLine() + ".txt";
+        return FILES_DIRECTORY + scanner.nextLine() + ".txt";
     }
 
     public static String getContent(Scanner scanner) {
